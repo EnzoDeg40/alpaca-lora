@@ -75,6 +75,26 @@ python generate.py \
     --lora_weights 'tloen/alpaca-lora-7b'
 ```
 
+### Inference cli (`generate_cli.py`)
+
+Similar to `generate.py`, but runs in the command line.
+
+Example usage:
+
+```bash
+python generate_cli.py \
+    --load_8bit \
+    --base_model 'decapoda-research/llama-7b-hf' \
+    --lora_weights 'tloen/alpaca-lora-7b'
+```
+
+Output:
+
+```
+Instruction: List all Canadian provinces in alphabetical order.
+Response: ['Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Ontario, Prince Edward Island, Quebec, Saskatchewan.']
+```
+
 ### Official weights
 
 The most recent "official" Alpaca-LoRA adapter available at [`tloen/alpaca-lora-7b`](https://huggingface.co/tloen/alpaca-lora-7b) was trained on March 26 with the following command:
