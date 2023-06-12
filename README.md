@@ -77,22 +77,34 @@ python generate.py \
 
 ### Inference cli (`generate_cli.py`)
 
-Similar to `generate.py`, but runs in the command line.
+It is also possible to request instructions from the model from another python script. For that you must import `generate_cli.py`, here is an example script of use :
 
-Example usage:
+```python
+from generate_cli import initialize_model, evaluate_instruction
+import time 
 
-```bash
-python generate_cli.py \
-    --load_8bit \
-    --base_model 'decapoda-research/llama-7b-hf' \
-    --lora_weights 'tloen/alpaca-lora-7b'
-```
+# Initialisation du modèle
+initialize_model(
+    load_8bit=True,
+    base_model="decapoda-research/llama-7b-hf",
+    lora_weights="tloen/alpaca-lora-7b"
+)
 
-Output:
+# Demande d'instructions spécifiques
+instructions = [
+    "Tell me about alpacas.",
+    "Translate the sentence 'I have no mouth but I must scream' into Spanish.",
+    "Write a Python program that prints the first 10 Fibonacci numbers.",
+]
 
-```
-Instruction: List all Canadian provinces in alphabetical order.
-Response: ['Alberta, British Columbia, Manitoba, New Brunswick, Newfoundland and Labrador, Nova Scotia, Ontario, Prince Edward Island, Quebec, Saskatchewan.']
+for instruction in instructions:
+    start = time.time()
+    print("Instruction:", instruction)
+    responses = evaluate_instruction(instruction)
+    for response in responses:
+        print("Response:", response)
+    print("Time:", time.time() - start)
+    print()
 ```
 
 ### Official weights
