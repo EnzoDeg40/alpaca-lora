@@ -90,7 +90,7 @@ initialize_model(
     lora_weights="tloen/alpaca-lora-7b"
 )
 
-# Demande d'instructions spécifiques
+# List of instructions to evaluate
 instructions = [
     "Tell me about alpacas.",
     "Translate the sentence 'I have no mouth but I must scream' into Spanish.",
@@ -105,6 +105,11 @@ for instruction in instructions:
         print("Response:", response)
     print("Time:", time.time() - start)
     print()
+```
+
+You can specify a instruction and an input by change the call to `evaluate_instruction` function :
+```python
+evaluate_instruction(instruction, input="My input text")
 ```
 
 ### Official weights
