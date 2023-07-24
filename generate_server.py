@@ -33,7 +33,12 @@ def main(
     prompt_template: str = "",  # The prompt template to use, will default to alpaca.
     server_name: str = "0.0.0.0",  # Allows to listen on all interfaces by providing '0.
     share_gradio: bool = False,
+    port: int = 0,
 ):
+    if port == 0:
+        print("Please specify a port to listen on, e.g. --port=5678")
+        return
+
     base_model = base_model or os.environ.get("BASE_MODEL", "")
     assert (
         base_model
@@ -163,7 +168,6 @@ def main(
 
     # Open server
     host = 'localhost'
-    port = 5678
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind((host, port))
@@ -176,6 +180,7 @@ def main(
         print(f"Connected to {addr}")
 
         data = client_socket.recv(1024)
+        print(data)
         if not data:
             break
 
